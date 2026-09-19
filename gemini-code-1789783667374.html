@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para o Meu Amor ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #3b060b 0%, #160003 70%, #080001 100%);
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Container de Pétalas e Rosas Caindo */
+    .petals-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .falling-item {
+      position: absolute;
+      top: -10%;
+      user-select: none;
+      opacity: 0.85;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0vh) rotate(0deg) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(115vh) rotate(360deg) translateX(35px);
+        opacity: 0;
+      }
+    }
+
+    /* Cartão Principal */
+    .card {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      width: 100%;
+      background: rgba(43, 6, 11, 0.78);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 68, 85, 0.3);
+      border-radius: 24px;
+      padding: 44px 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(214, 40, 57, 0.25);
+      text-align: center;
+      animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .rose-header {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 10px rgba(255, 68, 85, 0.7));
+    }
+
+    .subtitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.3rem;
+      color: #ff7582;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    .message-box {
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: #f7e6e8;
+      text-align: justify;
+      font-weight: 300;
+      background: rgba(18, 2, 4, 0.45);
+      padding: 24px;
+      border-radius: 16px;
+      border-left: 3px solid #d62839;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.4);
+      margin-bottom: 34px;
+    }
+
+    .message-box p + p {
+      margin-top: 14px;
+    }
+
+    .highlight-question {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ff9da7;
+      text-align: center;
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    /* Botão */
+    .btn-yes {
+      background: linear-gradient(135deg, #d62839 0%, #a81223 50%, #700611 100%);
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 16px 36px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(214, 40, 57, 0.5), 0 0 15px rgba(255, 77, 94, 0.4);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.06);
+      box-shadow: 0 12px 30px rgba(214, 40, 57, 0.75), 0 0 25px rgba(255, 107, 122, 0.6);
+      background: linear-gradient(135deg, #e83144 0%, #b81527 50%, #7d0815 100%);
+    }
+
+    .btn-yes:active {
+      transform: scale(0.98);
+    }
+
+    /* Mensagem de Celebração após o Clique */
+    #celebration {
+      display: none;
+      animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      margin-top: 10px;
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .celebration-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.9rem;
+      color: #ff4d5e;
+      text-shadow: 0 0 20px rgba(255, 77, 94, 0.8);
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .celebration-sub {
+      font-size: 1.4rem;
+      color: #ffd1d6;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .hearts-burst {
+      font-size: 3rem;
+      margin-top: 20px;
+      animation: pulse 1.2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.15);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 30px 20px;
+      }
+      .subtitle {
+        font-size: 1.9rem;
+      }
+      .message-box {
+        font-size: 0.98rem;
+        padding: 18px;
+      }
+      .btn-yes {
+        font-size: 0.95rem;
+        padding: 14px 26px;
+        width: 100%;
+        justify-content: center;
+      }
+      .celebration-title {
+        font-size: 1.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Efeito de Rosas caindo suavemente -->
+  <div class="petals-container" id="petals"></div>
+
+  <div class="card">
+    <div class="rose-header">🌹✨🌹</div>
+    <div class="subtitle">Especialmente para você...</div>
+
+    <!-- Texto da Declaração -->
+    <div class="message-box">
+      <p>
+        Oiii meu amor, bom diaaa. Espero que esteja bem. Antes de começar, eu gostaria de primeiro falar que é uma honra poder todo dia, mesmo distante, estar ao seu lado e poder ter o prazer de ver você lutando pelas suas coisinhas, ouvir sua risadinha que tanto amo e é como uma música pra mim, ouvir suas histórias e sobre seu dia. Eu amo de coração tudo isso, e quero que cada dia mais possamos fazer uma linda história juntos — e se depender de mim, teremos sim uma linda história.
+      </p>
+      <p>
+        Não sou o homem mais rico do mundo, mas sou o mais esforçado e insistente. E lhe garanto, não é nem promessa, que não vai me faltar esforço não só para fazer do nosso relacionamento o melhor possível, mas sim esforço também para construir uma vida melhor e sadia para nós dois juntos, meu amor. Quero ser feliz ao seu lado pelo máximo de tempo possível e felizes juntos. Sua felicidade é a minha e eu sempre tentarei lhe fazer feliz de alguma forma e maneira. Eu te amo, meu amor, e sempre amarei.
+      </p>
+      <p class="highlight-question">
+        Venho humildemente lhe pedir, meu amor: aceita ser minha digníssima namorada?
+      </p>
+    </div>
+
+    <!-- Botão de Ação -->
+    <div id="action-area">
+      <button class="btn-yes" id="btnYes">
+        <span>🌹 Se sua resposta é sim, clique aqui 🌹</span>
+      </button>
+    </div>
+
+    <!-- Mensagem que aparece após clicar -->
+    <div id="celebration">
+      <div class="celebration-title">
+        🎉 EEEEEHHHHHHH VOCÊ CLICOUUUUUUU! 🎉
+      </div>
+      <div class="celebration-sub">
+        OBRIGADO MEU AMORRRRR, EU TE AMOOOOOOOOOOO! ❤️
+      </div>
+      <div class="hearts-burst">🌹💖💍✨🥰</div>
+    </div>
+  </div>
+
+  <script>
+    // Gerar rosas e pétalas caindo suavemente
+    const petalsContainer = document.getElementById('petals');
+    const icons = ['🌹', '🥀', '❤️', '✨', '🌸'];
+
+    for (let i = 0; i < 26; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('falling-item');
+      petal.textContent = icons[Math.floor(Math.random() * icons.length)];
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = 5 + Math.random() * 7 + 's';
+      petal.style.animationDelay = Math.random() * 5 + 's';
+      petal.style.fontSize = 1.2 + Math.random() * 1.5 + 'rem';
+      petalsContainer.appendChild(petal);
+    }
+
+    // Ação do Botão
+    const btnYes = document.getElementById('btnYes');
+    const actionArea = document.getElementById('action-area');
+    const celebration = document.getElementById('celebration');
+
+    btnYes.addEventListener('click', () => {
+      // Esconde o botão suavemente
+      actionArea.style.display = 'none';
+      
+      // Exibe a comemoração
+      celebration.style.display = 'block';
+
+      // Cria explosão extra de corações e rosas na tela
+      for (let i = 0; i < 40; i++) {
+        const burstItem = document.createElement('div');
+        burstItem.classList.add('falling-item');
+        burstItem.textContent = ['🌹', '💖', '❤️', '💍'][Math.floor(Math.random() * 4)];
+        burstItem.style.left = Math.random() * 100 + 'vw';
+        burstItem.style.animationDuration = 2.5 + Math.random() * 3 + 's';
+        burstItem.style.fontSize = 2 + Math.random() * 1.5 + 'rem';
+        petalsContainer.appendChild(burstItem);
+      }
+    });
+  </script>
+</body>
+</html>
